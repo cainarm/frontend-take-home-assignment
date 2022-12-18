@@ -7,6 +7,7 @@ export const Colors = {
   blueGray: {
     10: '#F4F8FA',
     50: '#E9EEF2',
+    100: '#CBD5DC',
     300: '#8A9CA9',
     400: '#708797',
     600: '#4D6475',
