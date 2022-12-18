@@ -1,8 +1,7 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { ReachDate } from './ReachDate';
+import { MonthSelector } from './MonthSelector';
 
-describe('ReachDate', () => {
+describe('MonthSelector', () => {
   const props = {
     value: new Date(2022, 0, 1),
     onChange: jest.fn(),
@@ -13,14 +12,14 @@ describe('ReachDate', () => {
   });
 
   it('renders the correct month and year', () => {
-    render(<ReachDate {...props} />);
+    render(<MonthSelector {...props} />);
 
     expect(screen.getByText('January')).toBeInTheDocument();
     expect(screen.getByText('2022')).toBeInTheDocument();
   });
 
   it('calls onChange when the left button is clicked', () => {
-    render(<ReachDate {...props} />);
+    render(<MonthSelector {...props} />);
 
     fireEvent.click(screen.getByLabelText('go to previous month'));
 
@@ -28,7 +27,7 @@ describe('ReachDate', () => {
   });
 
   it('calls onChange when the right button is clicked', () => {
-    render(<ReachDate {...props} />);
+    render(<MonthSelector {...props} />);
 
     fireEvent.click(screen.getByLabelText('go to next month'));
 
@@ -37,7 +36,7 @@ describe('ReachDate', () => {
 
   it('should pass props directly to button components when using the buttonProps prop', () => {
     render(
-      <ReachDate
+      <MonthSelector
         {...props}
         buttonProps={{
           left: {

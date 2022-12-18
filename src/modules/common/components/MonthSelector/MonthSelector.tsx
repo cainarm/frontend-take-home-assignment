@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ChevronLeft, ChevronRight } from 'modules/common/components/Icons';
 import { Paragraph as P } from 'modules/common/components/Typography';
+import { useHandleFocus } from 'modules/common/hooks/useHandleFocus';
 
 type HTMLButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -13,7 +14,17 @@ type Props = Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> & {
   };
 };
 
-export function ReachDate({
+function getlocaleMonth(date: Date) {
+  const month = date.toLocaleString('en', { month: 'long' });
+  return month;
+}
+
+function getLocaleYear(date: Date) {
+  const year = date.toLocaleString('en', { year: 'numeric' });
+  return year;
+}
+
+export function MonthSelector({
   value,
   onChange,
   buttonProps = {
@@ -22,6 +33,8 @@ export function ReachDate({
   },
   ...otherProps
 }: Props): JSX.Element {
+  const { focused, onFocus, onBlur } = useHandleFocus();
+
   const goToPreviousMonth = () => {
     const newDate = new Date(value);
     newDate.setMonth(newDate.getMonth() - 1);
@@ -34,18 +47,26 @@ export function ReachDate({
     onChange(newDate);
   };
 
-  const getlocaleMonth = (date: Date) => {
-    const month = date.toLocaleString('en', { month: 'long' });
-    return month;
-  };
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (focused) {
+      if (event.key === 'ArrowLeft' && !buttonProps?.left?.disabled) {
+        goToPreviousMonth();
+      }
 
-  const getLocaleYear = (date: Date) => {
-    const year = date.toLocaleString('en', { year: 'numeric' });
-    return year;
+      if (event.key === 'ArrowRight') {
+        goToNextMonth();
+      }
+    }
   };
 
   return (
-    <Wrapper {...otherProps}>
+    <Wrapper
+      {...otherProps}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      tabIndex={1}
+      onKeyDown={handleKeyPress}
+    >
       <Button
         {...buttonProps?.left}
         onClick={goToPreviousMonth}
