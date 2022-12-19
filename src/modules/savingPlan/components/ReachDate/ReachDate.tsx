@@ -13,7 +13,7 @@ function dateIsInNextMonthOrBefore(date: Date) {
 export function ReachDate(props: Props) {
   return (
     <Field
-      label="Reach Goal by"
+      label="Reach goal by"
       input={
         <MonthSelector
           {...props}

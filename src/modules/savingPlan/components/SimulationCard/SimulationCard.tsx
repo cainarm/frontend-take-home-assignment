@@ -5,6 +5,7 @@ import {
   Caption,
 } from 'modules/common/components/Typography';
 import { Colors } from 'modules/common/constants/Colors';
+import { up } from 'styled-breakpoints';
 
 type Props = {
   amount: number;
@@ -69,6 +70,11 @@ const Info = styled.div`
 const CaptionWrapper = styled.div`
   background-color: ${Colors.blueGray[10]};
   padding: 24px 32px;
+  text-align: center;
+
+  ${up('md')} {
+    text-align: unset;
+  }
 `;
 
 const MontlyAmount = styled(Heading).attrs({

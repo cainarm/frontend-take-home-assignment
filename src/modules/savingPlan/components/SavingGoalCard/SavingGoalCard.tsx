@@ -99,7 +99,7 @@ const SubTitle = styled(Paragraph)`
 `;
 
 const Inputs = styled.div`
-  margin-top: 28px;
+  margin-top: 24px;
   gap: 16px;
 
   display: flex;
@@ -107,6 +107,7 @@ const Inputs = styled.div`
 
   ${up('md')} {
     display: grid;
+    margin-top: 28px;
     grid-template-columns: 272px 192px 200px;
   }
 `;
@@ -116,7 +117,7 @@ const MontlyAmountSimulationCard = styled(SimulationCard)`
 `;
 
 const Button = styled.button`
-  width: 320px;
+  width: 100%;
   height: 56px;
   display: flex;
   justify-content: center;
@@ -133,4 +134,8 @@ const Button = styled.button`
   margin-top: 32px;
   border: none;
   cursor: pointer;
+
+  ${up('md')} {
+    width: 320px;
+  }
 `;
