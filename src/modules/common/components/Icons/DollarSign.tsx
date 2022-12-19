@@ -5,7 +5,7 @@ export function DollarSign({
   color = Colors.blueGray[100],
   size = 24,
   ...otherProps
-}: CommomIconProps): JSX.Element {
+}: CommomIconProps) {
   return (
     <svg
       width={size}
