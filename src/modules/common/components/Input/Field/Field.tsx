@@ -47,6 +47,7 @@ const Content = styled.div`
     border: none;
     padding-left: 8px;
     color: ${Colors.blueGray[600]};
+    width: 100%;
 
     &:focus {
       outline: none;
