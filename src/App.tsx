@@ -1,5 +1,6 @@
 import React from 'react';
+import { Main } from 'modules/savingPlan/pages/Main';
 
 export function App(): JSX.Element {
-  return <div data-testid="greetings-container">Welcome to the Origin THA</div>;
+  return <Main />;
 }

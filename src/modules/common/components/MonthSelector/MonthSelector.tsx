@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ChevronLeft, ChevronRight } from 'modules/common/components/Icons';
 import { Paragraph as P } from 'modules/common/components/Typography';
 import { useHandleFocus } from 'modules/common/hooks/useHandleFocus';
+import { Colors } from 'modules/common/constants/Colors';
 
 type HTMLButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -9,8 +10,8 @@ type Props = Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> & {
   value: Date;
   onChange: (date: Date) => void;
   buttonProps?: {
-    left: HTMLButtonProps;
-    right: HTMLButtonProps;
+    left?: HTMLButtonProps;
+    right?: HTMLButtonProps;
   };
 };
 
@@ -53,7 +54,7 @@ export function MonthSelector({
         goToPreviousMonth();
       }
 
-      if (event.key === 'ArrowRight') {
+      if (event.key === 'ArrowRight' && !buttonProps?.right?.disabled) {
         goToNextMonth();
       }
     }
@@ -78,7 +79,7 @@ export function MonthSelector({
         <P aria-label="month">
           <b>{getlocaleMonth(value)}</b>
         </P>
-        <P aria-label="year">{getLocaleYear(value)}</P>
+        <Year aria-label="year">{getLocaleYear(value)}</Year>
       </Content>
       <Button
         {...buttonProps?.right}
@@ -93,6 +94,12 @@ export function MonthSelector({
 
 const Wrapper = styled.div`
   display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Button = styled.button`
@@ -109,11 +116,14 @@ const Button = styled.button`
     `}
 `;
 
+const Year = styled(P)`
+  color: ${Colors.blueGray[300]};
+`;
+
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   word-wrap: break-word;
   text-align: center;
-  width: 96px;
 `;

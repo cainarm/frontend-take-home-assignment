@@ -10,5 +10,15 @@ export const GlobalStyles = createGlobalStyle`
 
   body, html {
     background-color: #F4F8FA;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .root {
+    width: 100%;
+    height: 100%;
+
   }
 `;
